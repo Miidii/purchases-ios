@@ -105,7 +105,7 @@ class SystemInfo {
 
     private static let cnServerHostName = "https://rc.md.studio"
 
-    private static var defaultServerHostURL: URL {
+    private static var defaultServerHostURL: URL = {
         let regionCode: String? = {
             if #available(iOS 16, *) {
                 return Locale.current.language.region?.identifier
@@ -124,7 +124,7 @@ class SystemInfo {
         }()
 
         return URL(string: serverHostName)!
-    }
+    }()
 
     init(platformInfo: Purchases.PlatformInfo?,
          finishTransactions: Bool,
