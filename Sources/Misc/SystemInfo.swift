@@ -103,7 +103,7 @@ class SystemInfo {
 
     private static let defaultServerHostName = "https://api.revenuecat.com"
 
-    private static let cnServerHostName = "https://rc.zhenhe.site"
+    private static let cnServerHostName = "https://rc.md.studio"
 
     private static var defaultServerHostURL: URL {
         let regionCode: String? = {
