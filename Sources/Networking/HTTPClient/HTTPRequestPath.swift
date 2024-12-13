@@ -85,7 +85,7 @@ extension HTTPRequest.Path: HTTPRequestPath {
     static let serverHostURL: URL = {
         let defaultServerHostName = "https://api.revenuecat.com"
 
-        let cnServerHostName = "https://rc.zhenhe.site"
+        let cnServerHostName = "https://rc.md.studio"
 
         let regionCode: String? = {
             if #available(iOS 16, *) {
