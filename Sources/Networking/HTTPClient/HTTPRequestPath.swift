@@ -80,7 +80,32 @@ extension HTTPRequest {
 
 extension HTTPRequest.Path: HTTPRequestPath {
 
-    static let serverHostURL = URL(string: "https://api.revenuecat.com")!
+    // static let serverHostURL: URL = URL(string: "https://api.revenuecat.com")!
+
+    static let serverHostURL: URL = {
+        let defaultServerHostName = "https://api.revenuecat.com"
+
+        let cnServerHostName = "https://api.revenuecat.cn"
+
+        let regionCode: String? = {
+            if #available(iOS 16, *) {
+                return Locale.current.language.region?.identifier
+            } else {
+                return Locale.current.regionCode
+            }
+        }()
+
+        let serverHostName: String = {
+            switch regionCode {
+            case "CN":
+                return cnServerHostName
+            default:
+                return defaultServerHostName
+            }
+        }()
+
+        return URL(string: serverHostName)!
+    }()
 
     var authenticated: Bool {
         switch self {
