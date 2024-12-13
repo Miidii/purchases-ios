@@ -103,8 +103,27 @@ class SystemInfo {
 
     private static let defaultServerHostName = "https://api.revenuecat.com"
 
+    private static let cnServerHostName = "https://api.revenuecat.cn"
+
     private static var defaultServerHostURL: URL {
-        return URL(string: defaultServerHostName)!
+        let regionCode: String? = {
+            if #available(iOS 16, *) {
+                return Locale.current.language.region?.identifier
+            } else {
+                return Locale.current.regionCode
+            }
+        }()
+
+        let serverHostName: String = {
+            switch regionCode {
+            case "CN":
+                return cnServerHostName
+            default:
+                return defaultServerHostName
+            }
+        }()
+
+        return URL(string: serverHostName)!
     }
 
     init(platformInfo: Purchases.PlatformInfo?,
